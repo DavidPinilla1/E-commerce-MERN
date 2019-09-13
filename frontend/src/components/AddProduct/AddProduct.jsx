@@ -11,7 +11,14 @@ class AddProduct extends Component {
             iva: 0.21,
             description: '',
             category: '',
+            categories:[],
+            error:''
         }
+    }
+    componentDidMount(){
+        axios.get('http://localhost:3001/categories/')
+        .then(res=>this.setState({categories:res.data}))
+        .catch(error=>this.setState({error:'Ha habido un problema con el servidor'}))
     }
     handleSubmit = event => {
         event.preventDefault();
@@ -42,8 +49,11 @@ class AddProduct extends Component {
                 <textarea placeholder="description" name="description" cols="30" rows="10" onChange={this.handleChange}>
                 </textarea>
                 <input type="file" name="image" id="" /> 
-                <input type="text" placeholder="category" name="category" onChange={this.handleChange} />
+               <select name="category" id="" onChange={this.handleChange}>
+                   {this.state.categories.map(category=>(<option value={category._id}>{category.name}</option>))}
+               </select>
                 <button type="submit">Añadir Producto</button>
+                {this.state.error}
             </form>
         )
     }

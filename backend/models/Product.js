@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-
+const ObjectId=mongoose.Schema.Types.ObjectId;
 const ProductSchema=new mongoose.Schema({
     name:{
         required:true,
@@ -16,10 +16,8 @@ const ProductSchema=new mongoose.Schema({
     },
     description:String,
     imagePath:String,
-    category:{
-        type:String,
-        required:true
-    }
+    category:ObjectId
+
 });
 
 module.exports=mongoose.model('product',ProductSchema);
