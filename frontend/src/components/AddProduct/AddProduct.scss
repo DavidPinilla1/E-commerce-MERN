@@ -1,0 +1,13 @@
+.addProduct {
+    display: flex;
+    flex-direction: column;
+    padding: 3em;
+    justify-content: space-between;
+    height: 70vh;
+    input{
+        all:unset;
+        padding: 0.5em;
+        border:0.5px solid black;
+        border-radius: 0.4em;
+    }
+}
