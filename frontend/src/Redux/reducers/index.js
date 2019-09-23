@@ -16,8 +16,13 @@ const reducer = ( state = {
                 action.payload,
             ]
         }
-        default:
-            return state
+        case 'LOGIN':
+            return {
+                ...state,
+                user:action.payload
+            }
+            default:
+                return state
     }
 }
 export default reducer;

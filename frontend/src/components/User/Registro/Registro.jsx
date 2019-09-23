@@ -1,6 +1,6 @@
 import React from 'react';
 import '../User.scss';
-import axios from 'axios';
+import { registro } from '../../../Redux/actions/users'
 class Registro extends React.Component {
     constructor(props) {
         super(props);
@@ -10,6 +10,7 @@ class Registro extends React.Component {
             password: '',
             passwordConfirm: '',
             terms: false,
+            error: ''
         }
     }
     handleChange = (event) => {
@@ -18,15 +19,12 @@ class Registro extends React.Component {
     }
     handleSubmit = event => {
         event.preventDefault();
-        const { usuario, email, password } = this.state
         if (this.state.password === this.state.passwordConfirm && this.state.terms) {
-            axios.post('http://localhost:3001/user/signup', { usuario, email, password })
-                .then(res=>{
-                    console.log(res.data)
-                    // localStorage.setItem('user',JSON.stringify(res.data.user)) //esto sería para el login
-                    // localStorage.setItem('token',res.data.token)
-                })
-                .catch(console.log)
+            try {
+                registro(this.state)
+            } catch (error) {
+                this.setState({ error: error.message })
+            }
         }
     }
     render() {
@@ -48,7 +46,7 @@ class Registro extends React.Component {
                     <label className="passwordRule2">Both password should match.</label><label className="terms">
                         <input type="checkbox" required name="terms" checked={this.state.terms}
                             onChange={this.handleChange} /> By clicking on Sign up, you agree to David
-            Travel Agency's Terms and Conditions of Use.*
+        Travel Agency's Terms and Conditions of Use.*
                 <span className="checkmark"></span></label>
                     <button type="submit" className="submit" value="Submit"> SIGN UP</button>
                 </form>

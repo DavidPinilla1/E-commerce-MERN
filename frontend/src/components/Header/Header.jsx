@@ -7,6 +7,8 @@ const Header = props => {
             <Link to='/'>Home</Link>
             <Link to='/product/add'>Añadir Producto</Link>
             <Link to='/carrito'>Carrito</Link>
+            <Link to='/login'>Login</Link>
+            <Link to='/registro'>Registro</Link>
         </header>
     )
 }
