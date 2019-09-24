@@ -11,6 +11,5 @@ export const login = async ( usuario, password ) => {
         type: 'LOGIN',
         payload:res.data.user
     } )
-    localStorage.setItem('authToken',res.data.token)
-
+    localStorage.setItem('authToken',res.data.token);
 }

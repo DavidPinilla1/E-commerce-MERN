@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { login } from '../../../Redux/actions/users'
-const Login = () => {
+const Login = props => {
     const [usuario, setUsuario] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -8,10 +8,11 @@ const Login = () => {
         if (event.target.name === 'usuario') setUsuario(event.target.value);
         if (event.target.name === 'password') setPassword(event.target.value)
     }
-    const handleSubmit = event => {
+    const  handleSubmit = async event => {
         event.preventDefault();
         try {
-            login(usuario, password)
+            await login(usuario, password);
+            props.history.push('/');
         } catch (error) {
             setError(error.message)
         }
