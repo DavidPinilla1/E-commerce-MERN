@@ -1,8 +1,8 @@
 import axios from 'axios';
 import store from '../store.js';
-
+import BackendHost from '../../api-config'
 export const getAllProducts = async () => {
-    const res = await axios.get( 'http://localhost:3001/products/' )
+    const res = await axios.get(BackendHost+ 'products/' )
     console.log( res );
     store.dispatch( {
         type: 'GET_ALL_PRODUCTS',

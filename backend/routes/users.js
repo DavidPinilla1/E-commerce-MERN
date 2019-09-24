@@ -5,7 +5,8 @@ const jwt = require( 'jsonwebtoken' );
 const { SECRET_JWT, SECRET_EMAIL_JWT } = require( '../config/password.js' );
 const transporter = require( '../config/nodemailer.js' );
 const isAuthenticated = require( '../middleware/authentication' );
-const upload = require( '../config/multer.js' )
+const upload = require( '../config/multer.js' );
+const {frontendURL,backendURL}=require('../config/env')
 router.post( '/signup', async ( req, res ) => { //CREATE
   try {
       const user = await new UserModel( {
@@ -13,7 +14,7 @@ router.post( '/signup', async ( req, res ) => { //CREATE
           confirmedEmail: false,
       } ).save();
       const emailToken = jwt.sign( { email: user.email }, SECRET_EMAIL_JWT, { expiresIn: '2d' } )
-      const url = 'http://localhost:3001/user/confirmEmail/' + emailToken
+      const url = backendURL+'user/confirmEmail/' + emailToken
       await transporter.sendMail( { //enviamos el email con la siguiente información:
           to: user.email, // destinatario del email
           subject: "Active su cuenta en nuestra web de viajes", //asunto del email
@@ -38,7 +39,7 @@ router.get( '/confirmEmail/:emailToken', async ( req, res ) => {
       const token = req.params.emailToken; //sacamos el token de la url
       const email = jwt.verify( token, SECRET_EMAIL_JWT ).email; //sacamos el email del token
       await UserModel.findOneAndUpdate( { email }, { confirmedEmail: true } ) //actualizamos el usuario a email confirmado
-      res.redirect('http://localhost:3000/login'); //le decimos que el usuario ya esta activado
+      res.redirect(frontendURL+'login'); //le decimos que el usuario ya esta activado
   } catch ( error ) {
       console.log( error );
       res.status( 401 ).send( error )
