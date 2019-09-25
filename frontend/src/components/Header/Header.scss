@@ -1,4 +1,7 @@
 .header{
     display: flex;
     justify-content: space-around;
+    .activado{
+        background-color: rgb(45, 161, 255);
+    }
 }

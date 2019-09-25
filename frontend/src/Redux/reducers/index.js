@@ -7,6 +7,11 @@ const reducer = ( state = {
             ...state,
             products: action.payload,
         };
+    case 'GET_PRODUCT':
+        return {
+            ...state,
+            product: action.payload,
+        };
 
     case 'ADD_ITEM':
         return {
@@ -19,7 +24,7 @@ const reducer = ( state = {
         case 'LOGIN':
             return {
                 ...state,
-                user:action.payload
+                user: action.payload
             }
             default:
                 return state

@@ -8,7 +8,7 @@ router.get( '/', ( req, res, next ) => {
         .catch( error => res.status( 500 ).send( error ) )
 } );
 router.get( '/:id', ( req, res, next ) => {
-    ProductModel.find( { _id: req.params.id } )
+    ProductModel.findOne( { _id: req.params.id } )
         .then( product => res.send( product ) )
         .catch( error => res.status( 500 ).send( error ) )
 } );

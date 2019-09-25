@@ -9,6 +9,13 @@ export const getAllProducts = async () => {
         payload:res.data
     } )
 }
+export const getOneProduct = async (id) => {
+    const res = await axios.get(BackendHost+ 'products/'+id )
+    store.dispatch( {
+        type: 'GET_PRODUCT',
+        payload:res.data
+    } )
+}
 export const addItemToCarrito=(product)=>{
 
     store.dispatch({

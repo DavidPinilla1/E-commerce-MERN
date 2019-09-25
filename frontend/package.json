@@ -11,12 +11,13 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
     "redux": "^4.0.4",
-    "redux-localstorage-simple": "^2.1.6"
+    "redux-localstorage-simple": "^2.1.6",
+    "serve": "^11.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "serve -s build",
     "dev": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

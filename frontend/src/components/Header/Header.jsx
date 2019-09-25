@@ -1,23 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { NavLink,NavNavLink } from 'react-router-dom'
 import './Header.scss';
 import { connect } from 'react-redux'
 export const Header = props => {
     //en JSX siempre devolvemos un solo HTML tag
     return (
         <header className="header">
-                <Link to='/'>Home</Link>
-                <Link to='/carrito'>Carrito</Link>
+                <NavLink activeClassName="activado" exact to='/'>Home</NavLink>
+                <NavLink activeClassName="activado" exact to='/carrito'>Carrito</NavLink>
                 {props.user ?
                 <div className="loggedIn">
-                    <Link to='/product/add'>Añadir Producto</Link>
-                    <Link to='/profile'>profile</Link>
-                    <Link to='/logout'>logout</Link>
+                    <NavLink  activeClassName="activado" to='/product/add'>Añadir Producto</NavLink>
+                    <NavLink activeClassName="activado" to='/profile'>profile</NavLink>
+                    <NavLink activeClassName="activado" to='/logout'>logout</NavLink>
                 </div>
                 :
                 <div className="notLoggedIn">
-                    <Link to='/login'>Login</Link>
-                    <Link to='/registro'>Registro</Link>
+                    <NavLink to='/login'>Login</NavLink>
+                    <NavLink to='/registro'>Registro</NavLink>
                 </div>
 
             }

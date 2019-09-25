@@ -6,6 +6,7 @@ import Header from './components/Header/Header';
 import Carrito from './components/Carrito/Carrito';
 import Login from './components/User/Login/Login'
 import Registro from './components/User/Registro/Registro'
+import ProductDetail from './components/ProductDetail'
 function App() {
   return (
     <BrowserRouter>
@@ -16,6 +17,7 @@ function App() {
         <Route path="/carrito" exact component={Carrito} />
         <Route path="/login" exact component={Login} />
         <Route path="/registro" exact component={Registro} />
+        <Route path="/product/:id" exact component={ProductDetail} />
       </Switch>
     </BrowserRouter>
   );
